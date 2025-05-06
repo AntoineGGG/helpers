@@ -1,0 +1,25 @@
+# Path to the job.params file
+PARAMS_FILE="cip/job.params"  # Adjust this path based on your actual structure
+
+
+
+COMPVERS=$(grep -A 3 'COMPVERS:' "$PARAMS_FILE" | grep 'val:' | awk -F "'" '{print $2}' | awk -F. '{print $NF}')
+
+
+echo "           .--."
+echo "          |o_o |"
+echo "          |:_/ |"
+echo "         //   \\ \\"
+echo "        (|     | )"
+echo "       /'\\_   _/\\"
+echo "       \\___)=(___/"
+
+
+
+if [[ ! "$COMPVERS" =~ AG$ ]]; then
+    echo "Error: COMPVERS value '$COMPVERS' does not end with 'AG'."
+    echo "Please update it before pushing."
+    exit 1
+fi
+
+echo "All checks passed. Ready to push!"
